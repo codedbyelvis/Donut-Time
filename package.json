@@ -10,6 +10,9 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "massive": "^4.6.4",
+    "node-sass-chokidar": "^0.0.3",
+    "npm": "^5.6.0",
+    "npm-run-all": "^4.1.2",
     "passport": "^0.4.0",
     "passport-auth0": "^0.6.1",
     "react": "^16.2.0",
@@ -22,10 +25,13 @@
     "redux-promise-middleware": "^5.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start"
   },
   "main": "server/index.js",
   "proxy": "http://localhost:3005"

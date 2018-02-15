@@ -1,8 +1,8 @@
 Create table if not exists reviews (
-    id serial primary key,
-    user_id smallint references user(id),
+    review_id serial primary key,
+    user_id smallint references user(user_id),
     user_review text,
     img text,
-    -- find how to do starts
+    user_stars smallint,
     is_approved boolean default false
 );

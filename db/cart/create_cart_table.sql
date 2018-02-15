@@ -1,6 +1,6 @@
 Create table if not exists cart (
-    id serial primary key,
-    user_id smallint references user(id),
-    donut_id smallint[] references donut(id),
-    donut_amount smallint[]
+    cart_id serial primary key,
+    user_id smallint references user(user_id),
+    donut_id smallint references donut(donut_id),
+    donut_amount smallint
 );

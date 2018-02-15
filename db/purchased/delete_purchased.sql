@@ -1,0 +1,1 @@
+delete from purchased where purchased_id = $1;

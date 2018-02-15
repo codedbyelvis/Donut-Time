@@ -1,0 +1,1 @@
+delete from reviews where reviews_id = $1;

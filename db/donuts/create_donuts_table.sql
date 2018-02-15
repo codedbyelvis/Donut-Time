@@ -1,5 +1,5 @@
 Create table if not exists donuts (
-    id serial primary key,
+    donut_id serial primary key,
     donut_name text,
     donut_desc text,
     donut_img text,

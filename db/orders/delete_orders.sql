@@ -1,0 +1,1 @@
+delete from orders cascade where order_id = $1;

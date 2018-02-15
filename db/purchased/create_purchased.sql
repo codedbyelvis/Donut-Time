@@ -1,5 +1,5 @@
 insert into purchased
-(orders_id)
+(user_id, orders_id, donut_id, donut_amount)
 values
-($1)
+($1, $2, $3, $4)
 returning *;
