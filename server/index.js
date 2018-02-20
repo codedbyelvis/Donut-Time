@@ -1,13 +1,22 @@
 require('dotenv').config();
 const express = require('express'),
     session = require('express-session'),
+    bodyParser = require('body-parser'),
     massive = require('massive'),
     passport = require('passport'),
     Auth0Strategy = require('passport-auth0');
+    cors = require('cors');
+    DonutsCtrl = require('./controllers/DonutsCtrl');
+    PurchasedCtrl = require('./controllers/PurchasedCtrl');
+    OrdersCtrl = require('./controllers/OrdersCtrl');
+    CartCtrl = require('./controllers/CartCtrl');
+    ReviewsCtrl = require('./controllers/ReviewsCtrl');
     
 const {SERVER_PORT, SESSION_SECRET,DOMAIN,CLIENTID,CLIENT_SECRET, CALLBACK_URL, CONNECTION_STRING} = process.env;
 const app = express();
 
+app.use(bodyParser.json());
+app.use(cors());
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
@@ -69,6 +78,35 @@ app.get('/logout', (req,res) => {
     req.logOut();
     res.redirect('http://localhost:3000/');
 })
+
+app.get('/api/donuts', DonutsCtrl.getAllDonuts)
+app.get('/api/donuts/:id', DonutsCtrl.getDonuts)
+app.delete('/api/donuts', DonutsCtrl.deleteDonuts)
+app.patch('/api/donuts', DonutsCtrl.updateDonuts)
+app.post('/api/donuts', DonutsCtrl.createDonuts)
+
+app.get('/api/cart', CartCtrl.getCart)
+app.delete('/api/cart', CartCtrl.deleteCart)
+app.patch('/api/cart', CartCtrl.updateCart)
+app.post('/api/cart', CartCtrl.createCart)
+
+app.get('/api/orders', OrdersCtrl.getAllOrders)
+app.get('/api/orders', OrdersCtrl.getOrders)
+app.delete('/api/orders', OrdersCtrl.deleteOrders)
+// app.patch('/api/orders', OrdersCtrl.updateOrders)
+app.post('/api/orders', OrdersCtrl.createOrders)
+
+app.get('/api/purchased', PurchasedCtrl.getAllPurchased)
+app.get('/api/purchased', PurchasedCtrl.getPurchased)
+app.delete('/api/purchased', PurchasedCtrl.deletePurchased)
+app.patch('/api/purchased', PurchasedCtrl.updatePurchased)
+app.post('/api/purchased', PurchasedCtrl.createPurchased)
+
+app.get('/api/reviews', ReviewsCtrl.getAllReviews)
+app.get('/api/reviews', ReviewsCtrl.getReviews)
+app.delete('/api/reviews', ReviewsCtrl.deleteReviews)
+app.patch('/api/reviews', ReviewsCtrl.updateReviews)
+app.post('/api/reviews', ReviewsCtrl.createReviews)
 
 app.listen(SERVER_PORT, () => {
     console.log(`The Secret Sauce is on Port ${SERVER_PORT}`);

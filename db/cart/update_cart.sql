@@ -1,3 +1,3 @@
 update cart
-set donut_id = $1, donut_amount = $2;
+set donut_id = $2, donut_amount = $3;
 where user_id = $1;
