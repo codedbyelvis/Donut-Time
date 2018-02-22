@@ -16,13 +16,31 @@ const {SERVER_PORT, SESSION_SECRET,DOMAIN,CLIENTID,CLIENT_SECRET, CALLBACK_URL, 
 const app = express();
 
 app.use(bodyParser.json());
+
 app.use(cors());
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }))
-
+////////////////////////
+///testing middleware///
+///////////////////////
+//comment out b4 hosting
+//and global find and replace
+// req.session.user to req.user
+app.use((req, res, next)=>{
+    if(!req.session.user){
+        req.session.user ={
+            user_id: 1,
+            user_name: 'elvis hernandez',
+            user_img: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',
+            is_admin: false,
+            auth_id: 'google-oauth2|116028000105896267328'
+        }
+    }
+    next()
+})
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -39,26 +57,36 @@ passport.use(new Auth0Strategy({
     scope: 'openid profile'
 },    function(accessToken, refreshToken, extraParams, profile, done) {
         const db = app.get('db');
-
+        console.log('Hello Darkness');
         const { sub, name, picture } = profile._json;
-        console.log(profile);
-        db.find_user([sub]).then(resp => {
+        // console.log(profile);
+        db.user.find_user([sub]).then(resp => {
+            console.log(resp);
             if(resp[0]) {
-                done(null, resp[0].id)
+                done(null, resp[0].user_id)
             } else {
-                db.create_user([name, picture, sub])
+                db.user.create_user([name, picture, sub]).then(resp => {
+                    if(resp[0]) {
+                        done(null, resp[0].user_id)
+                    }
+                })
             }
         })
 }))
+// REMEBER YOU HARDCODED TRUE IN CREATE_USER
 
 passport.serializeUser( (id, done) => {
+    console.log('my old friend');
     done(null, id);
 })
 passport.deserializeUser( (id, done) => {
+    console.log("I've come to speak with you again");
     const db = app.get('db');
-    db.find_logged_in_user([id]).then( res => {
+    db.user.find_logged_in_user([id]).then( res => {
+        console.log(res[0])
         done(null, res[0]);
-    }).catch(console.log);
+    })
+    // .catch(console.log);
 })
 
 app.get('/auth', passport.authenticate('auth0'));
@@ -97,13 +125,13 @@ app.delete('/api/orders', OrdersCtrl.deleteOrders)
 app.post('/api/orders', OrdersCtrl.createOrders)
 
 app.get('/api/purchased', PurchasedCtrl.getAllPurchased)
-app.get('/api/purchased', PurchasedCtrl.getPurchased)
+app.get('/api/purchased/:id', PurchasedCtrl.getPurchased)
 app.delete('/api/purchased', PurchasedCtrl.deletePurchased)
 app.patch('/api/purchased', PurchasedCtrl.updatePurchased)
 app.post('/api/purchased', PurchasedCtrl.createPurchased)
 
 app.get('/api/reviews', ReviewsCtrl.getAllReviews)
-app.get('/api/reviews', ReviewsCtrl.getReviews)
+app.get('/api/reviews/:id', ReviewsCtrl.getReviews)
 app.delete('/api/reviews', ReviewsCtrl.deleteReviews)
 app.patch('/api/reviews', ReviewsCtrl.updateReviews)
 app.post('/api/reviews', ReviewsCtrl.createReviews)

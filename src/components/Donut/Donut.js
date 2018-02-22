@@ -10,7 +10,7 @@ class Donut extends Component {
     constructor(props){
         super(props)
         this.state = {
-            donut: [],
+            donut: {},
             amount: 0
         }
     }
@@ -18,33 +18,30 @@ class Donut extends Component {
     componentDidMount(){
         axios.get(`/api/donuts/${this.props.match.params.id}`).then(res => {
             this.setState({
-                donut:res.data
+                donut:res.data[0]
             },() =>console.log(this.state))
         })
     }
 
     render() {
-        let donutToDisplay = this.state.donut.map(val => {
-            return(
-                <div>
-                    <img src={val.donut_img} />
-                    <h2>{val.donut_name}</h2>
-                    {val.donut_price}
-                    <h3>{val.donut_desc}</h3>
-                    {this.state.amount}
-                </div>
-            )
-        })
+        const {donut} = this.state;
         return (
             <div className='Donut'>  
-            {donutToDisplay}
+            <div>
+                    <img src={"http://unsplash.it/300/?random"} alt='' />
+                    <h2>{donut.donut_name}</h2>
+                    {donut.donut_price}
+                    <p>{donut.donut_desc}</p>
+                    {this.state.amount}
+                </div>
              <Button className='single' fnc={() => this.setState({amount: this.state.amount +1})}>Single</Button>
              <Button className='half-dozen' fnc={() => this.setState({amount: this.state.amount +6})}>Half-Dozen</Button>
              <Button className='dozen' fnc={() => this.setState({amount: this.state.amount +12})}>Dozen</Button>
              
-            <Button className='ADD' fnc={() => this.props.addCart(this.state.donut[0]) }>
+            <Button className='ADD' fnc={() => this.props.addCart(this.state.donut,this.state.amount) }>
                 ADD
             </Button>
+            
             </div> 
         )
     }

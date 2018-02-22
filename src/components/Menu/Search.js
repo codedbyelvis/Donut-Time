@@ -6,7 +6,7 @@ class Search extends Component {
     super(props);
     this.state = {
       searchTerm: '',
-      herolist:[]
+      donuts:[]
     }
   }
 
@@ -16,7 +16,7 @@ class Search extends Component {
     }, () => console.log(this.state))
   }
 
-  filterMarvel(val) {
+  filterDonuts(val) {
     this.setState({
       searchTerm: val
     })
