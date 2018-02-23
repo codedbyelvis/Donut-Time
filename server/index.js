@@ -91,7 +91,7 @@ passport.deserializeUser( (id, done) => {
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/donuts'
+    successRedirect: 'http://localhost:3000/#/'
 }))
 
 app.get('/auth/me', (req,res) => {
@@ -114,7 +114,7 @@ app.patch('/api/donuts', DonutsCtrl.updateDonuts)
 app.post('/api/donuts', DonutsCtrl.createDonuts)
 
 app.get('/api/cart', CartCtrl.getCart)
-app.delete('/api/cart', CartCtrl.deleteCart)
+app.delete('/api/cart/:id', CartCtrl.deleteCart)
 app.patch('/api/cart', CartCtrl.updateCart)
 app.post('/api/cart', CartCtrl.createCart)
 

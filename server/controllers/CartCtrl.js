@@ -7,7 +7,7 @@ module.exports = {
     },
     deleteCart: function(req,res){  
         const db = req.app.get('db')
-        db.cart.delete_cart([req.body.cart_id]).then(resp => {
+        db.cart.delete_cart([req.session.cart_id]).then(resp => {
             res.status(200).send(resp);
         })
     },

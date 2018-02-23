@@ -1,3 +1,3 @@
 select *
 from reviews
-join user on reviews.user_id = user.user_id;
+join users on reviews.user_id = users.user_id;

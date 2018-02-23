@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Button from '../Button';
-import {addCart} from '../../ducks/users';
+import {addCart} from '../../ducks/reducer';
 import {connect} from 'react-redux';
 
 
