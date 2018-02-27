@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Button from '../Button';
-import {addCart} from '../../ducks/reducer';
+import {addCart, getUser} from '../../ducks/reducer';
 import {connect} from 'react-redux';
 
 
@@ -11,7 +11,8 @@ class Donut extends Component {
         super(props)
         this.state = {
             donut: {},
-            amount: 0
+            amount: 0,
+            toggle:false
         }
     }
 
@@ -21,30 +22,54 @@ class Donut extends Component {
                 donut:res.data[0]
             },() =>console.log(this.state))
         })
+        this.props.getUser()
     }
-
+    checkLogin(){
+        console.log("ID", this.props.user.user_id)
+        console.log("s\props", this.props)
+        if(this.props.user.user_id){
+            this.props.addCart(this.state.donut,this.state.amount)
+        } else {
+            this.setState({toggle:true})
+        }
+    }
     render() {
         const {donut} = this.state;
         return (
             <div className='Donut'>  
             <div>
-                    <img src={"http://unsplash.it/300/?random"} alt='' />
+                    <img src={donut.donut_img} alt='' />
                     <h2>{donut.donut_name}</h2>
                     {donut.donut_price}
                     <p>{donut.donut_desc}</p>
                     {this.state.amount}
                 </div>
+       
              <Button className='single' fnc={() => this.setState({amount: this.state.amount +1})}>Single</Button>
              <Button className='half-dozen' fnc={() => this.setState({amount: this.state.amount +6})}>Half-Dozen</Button>
              <Button className='dozen' fnc={() => this.setState({amount: this.state.amount +12})}>Dozen</Button>
              
-            <Button className='ADD' fnc={() => this.props.addCart(this.state.donut,this.state.amount) }>
+            {/* <Button className='ADD' fnc={() => {this.props.addCart(this.state.donut,this.state.amount);
+            () => {this.state.toggle ? (<a href="http://localhost:3030/auth"><button>Login</button></a>) : null}} }>
                 ADD
-            </Button>
+            </Button> */}
+            {
+                this.state.toggle
+                ?
+                <a href={`http://localhost:3005/auth?location=${this.props.location.pathname}`}><Button className='logIn'>Login</Button></a>
+                :
+                null
+            }
             
+            <Button className='ADD' fnc={() => {this.checkLogin()}}>ADD</Button>
+
             </div> 
         )
     }
 }
 
-export default connect(null,{addCart})(Donut)
+function mapStateToProps( state ) {
+    return state;
+  }
+  
+  export default connect( mapStateToProps, {addCart, getUser} )( Donut );

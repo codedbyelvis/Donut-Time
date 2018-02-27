@@ -41,7 +41,6 @@ class Home extends Component {
                 </a>
                 }
                 home goes here
-                donut 21
                 {list}
             </div> 
         )

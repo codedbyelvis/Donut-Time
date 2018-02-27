@@ -3,6 +3,8 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Button from '../Button';
 import {connect} from 'react-redux';
+import StripeCheckout from 'react-stripe-checkout';
+// import REACT_APP_STRIPE_PUBLIC_KEY from '../../../';
 
 export default class Cart extends Component {
     constructor(){
@@ -26,6 +28,7 @@ export default class Cart extends Component {
                 <div key={i}>
                 {donut.donut_name}
                 {donut.donut_price}
+                {cart.donut_amount}
                 <img src={donut.donut_img}/>
                 </div>
             )

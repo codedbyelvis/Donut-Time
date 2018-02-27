@@ -29,18 +29,18 @@ app.use(session({
 //comment out b4 hosting
 //and global find and replace
 // req.session.user to req.user
-app.use((req, res, next)=>{
-    if(!req.session.user){
-        req.session.user ={
-            user_id: 1,
-            user_name: 'elvis hernandez',
-            user_img: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',
-            is_admin: false,
-            auth_id: 'google-oauth2|116028000105896267328'
-        }
-    }
-    next()
-})
+// app.use((req, res, next)=>{
+//     if(!req.session.user){
+//         req.session.user ={
+//             user_id: 1,
+//             user_name: 'elvis hernandez',
+//             user_img: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',
+//             is_admin: false,
+//             auth_id: 'google-oauth2|116028000105896267328'
+//         }
+//     }
+//     next()
+// })
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -89,12 +89,28 @@ passport.deserializeUser( (id, done) => {
     // .catch(console.log);
 })
 
+saveLocation = (req,res,next) => {
+    console.log('I tried')
+    req.session.location = req.query.location
+    console.log('DUDE',req.query.location)
+    next()
+}
+
+checkForLogin = (req,res,next) => {
+    if(req.user){
+        next()
+    } else {
+        res.status(401).send('not logged in')
+    }
+}
+
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/'
+    successRedirect: 'http://localhost:3000/#'
 }))
 
 app.get('/auth/me', (req,res) => {
+    console.log(req.session)
     if(!req.user) {
         res.status(404).send('Please log in')
     } else {
@@ -113,10 +129,10 @@ app.delete('/api/donuts', DonutsCtrl.deleteDonuts)
 app.patch('/api/donuts', DonutsCtrl.updateDonuts)
 app.post('/api/donuts', DonutsCtrl.createDonuts)
 
-app.get('/api/cart', CartCtrl.getCart)
-app.delete('/api/cart/:id', CartCtrl.deleteCart)
-app.patch('/api/cart', CartCtrl.updateCart)
-app.post('/api/cart', CartCtrl.createCart)
+app.get('/api/cart', checkForLogin , CartCtrl.getCart)
+app.delete('/api/cart/:id', checkForLogin, CartCtrl.deleteCart)
+app.patch('/api/cart', checkForLogin, CartCtrl.updateCart)
+app.post('/api/cart', checkForLogin, CartCtrl.createCart)
 
 app.get('/api/orders', OrdersCtrl.getAllOrders)
 app.get('/api/orders', OrdersCtrl.getOrders)

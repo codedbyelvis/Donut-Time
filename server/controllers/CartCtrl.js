@@ -1,7 +1,7 @@
 module.exports = {
     getCart: function(req,res){  
             const db = req.app.get('db')
-            db.cart.get_user_cart([req.session.user.user_id]).then(resp => {
+            db.cart.get_user_cart([req.user.user_id]).then(resp => {
                 res.status(200).send(resp);
             })
     },
@@ -19,22 +19,25 @@ module.exports = {
     },
     createCart: function(req,res){  
         const db = req.app.get('db')
+        console.log('another',req.session)
         //check if user has said donut
         db.cart.find({
-            user_id:req.session.user.id,
+            user_id:req.user.user_id,
             donut_id: req.body.donut_id
         }).then(resp =>{
             let record = resp[0]
-            (console.log(record))
+            // (console.log(resp))
             if(record){
+                console.log("record")
                 //update amount
-                db.query(`update donuts set amount = $1 where cart_id = $2 returning *`, [record.amount + req.body.donut_amount,
-                    req.session.user.user_id]).then((resp)=>{
+                db.cart.update_cart([req.user.user_id, 
+                    req.body.donut_id, record.amount + req.body.donut_amount]).then((resp)=>{
                         console.log(resp)
                         res.status(200).send(resp);
                     })
             } else {
-                db.cart.create_cart([req.session.user.user_id, req.body.donut_id, req.body.donut_amount]).then(resp => {
+                console.log("no record")
+                db.cart.create_cart([req.user.user_id, req.body.donut_id, req.body.donut_amount]).then(resp => {
                     console.log(resp)                    
                     res.status(200).send(resp);
                 })
