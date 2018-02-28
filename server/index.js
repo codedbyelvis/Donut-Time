@@ -4,12 +4,14 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     massive = require('massive'),
     passport = require('passport'),
-    Auth0Strategy = require('passport-auth0');
-    cors = require('cors');
-    DonutsCtrl = require('./controllers/DonutsCtrl');
-    PurchasedCtrl = require('./controllers/PurchasedCtrl');
-    OrdersCtrl = require('./controllers/OrdersCtrl');
-    CartCtrl = require('./controllers/CartCtrl');
+    Auth0Strategy = require('passport-auth0'),
+    cors = require('cors'),
+    stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY),
+    { joesPennyFunction } = require('./pennyConverter'),
+    DonutsCtrl = require('./controllers/DonutsCtrl'),
+    PurchasedCtrl = require('./controllers/PurchasedCtrl'),
+    OrdersCtrl = require('./controllers/OrdersCtrl'),
+    CartCtrl = require('./controllers/CartCtrl'),
     ReviewsCtrl = require('./controllers/ReviewsCtrl');
     
 const {SERVER_PORT, SESSION_SECRET,DOMAIN,CLIENTID,CLIENT_SECRET, CALLBACK_URL, CONNECTION_STRING} = process.env;
@@ -28,10 +30,10 @@ app.use(session({
 ///////////////////////
 //comment out b4 hosting
 //and global find and replace
-// req.session.user to req.user
+// req.user to req.user
 // app.use((req, res, next)=>{
-//     if(!req.session.user){
-//         req.session.user ={
+//     if(!req.user){
+//         req.user ={
 //             user_id: 1,
 //             user_name: 'elvis hernandez',
 //             user_img: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',
@@ -59,7 +61,7 @@ passport.use(new Auth0Strategy({
         const db = app.get('db');
         console.log('Hello Darkness');
         const { sub, name, picture } = profile._json;
-        // console.log(profile);
+        console.log(profile);
         db.user.find_user([sub]).then(resp => {
             console.log(resp);
             if(resp[0]) {
@@ -83,7 +85,7 @@ passport.deserializeUser( (id, done) => {
     console.log("I've come to speak with you again");
     const db = app.get('db');
     db.user.find_logged_in_user([id]).then( res => {
-        console.log(res[0])
+        // console.log(res[0])
         done(null, res[0]);
     })
     // .catch(console.log);
@@ -110,10 +112,11 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 }))
 
 app.get('/auth/me', (req,res) => {
-    console.log(req.session)
+    // console.log(req.session)
     if(!req.user) {
         res.status(404).send('Please log in')
     } else {
+        console.log('double dude', req.user)
         res.status(200).send(req.user);
     }
 })
@@ -151,6 +154,24 @@ app.get('/api/reviews/:id', ReviewsCtrl.getReviews)
 app.delete('/api/reviews', ReviewsCtrl.deleteReviews)
 app.patch('/api/reviews', ReviewsCtrl.updateReviews)
 app.post('/api/reviews', ReviewsCtrl.createReviews)
+
+app.post('/api/payment', (req, res, next) => {
+    const amountArray = req.body.amount.toString().split('');
+    const convertedAmt = joesPennyFunction(amountArray);
+    const charge = stripe.charges.create(
+        {
+            amount: convertedAmt,
+            currency: 'usd',
+            source: req.body.token.id,
+            description: 'Stripe Checkout test charge'
+        },
+        function(err, charge) {
+            if (err) return res.sendStatus(500);
+            else return res.status(200).send(charge);
+        }
+    );
+});
+
 
 app.listen(SERVER_PORT, () => {
     console.log(`The Secret Sauce is on Port ${SERVER_PORT}`);

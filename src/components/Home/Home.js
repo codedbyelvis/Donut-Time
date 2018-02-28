@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'; 
-// import logo from './communityBank.svg';
+import {getUser} from '../../ducks/reducer';
+import background from './donutTime.jpg';
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -18,19 +19,21 @@ class Home extends Component {
                 reviews: res.data
             });
         })
+        this.props.getUser()
     }
 
     render() {
+        console.log(this.props.user)
 
         const list = this.state.reviews.length ? this.state.reviews.map((val,i)=>(
             <p key={i}>{val.user_review}</p>
         )):null
-            console.log('dude', list);
+        console.log('dude', this.props.user);
         return (
             <div className='App'>  
-                {/* <img src={logo} alt=""/> */}
-                {
-                    this.props.user?
+                <img src={background} alt=""/>
+            {
+                    this.props.user.user_id?
 
                 <a href={ process.env.REACT_APP_LOGIN }>
                     <button>Logout</button>
@@ -51,4 +54,4 @@ function mapStateToProps( state ) {
     return state;
   }
   
-  export default connect( mapStateToProps )( Home );
+  export default connect( mapStateToProps, {getUser} )( Home );
