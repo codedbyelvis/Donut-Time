@@ -92,7 +92,7 @@ checkForLogin = (req,res,next) => {
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: process.env.Redirect
+    successRedirect: process.env.SuccessRedirect
 }))
 
 app.get('/auth/me', (req,res) => {
