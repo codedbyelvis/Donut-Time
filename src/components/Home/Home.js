@@ -35,7 +35,7 @@ class Home extends Component {
             {
                     this.props.user.user_id?
 
-                <a href={ process.env.REACT_APP_LOGIN }>
+                <a href={ process.env.REACT_APP_LOGIN+'/logout' }>
                     <button>Logout</button>
                 </a>
                     :

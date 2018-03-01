@@ -56,7 +56,7 @@ class Donut extends Component {
             {
                 this.state.toggle
                 ?
-                <a href={`http://localhost:3005/auth?location=${this.props.location.pathname}`}><Button className='logIn'>Login</Button></a>
+                <a href={`${process.env.BaseURL}/auth?location=${this.props.location.pathname}`}><Button className='logIn'>Login</Button></a>
                 :
                 null
             }

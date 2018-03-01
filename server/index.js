@@ -25,24 +25,8 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }))
-////////////////////////
-///testing middleware///
-///////////////////////
-//comment out b4 hosting
-//and global find and replace
-// req.user to req.user
-// app.use((req, res, next)=>{
-//     if(!req.user){
-//         req.user ={
-//             user_id: 1,
-//             user_name: 'elvis hernandez',
-//             user_img: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',
-//             is_admin: false,
-//             auth_id: 'google-oauth2|116028000105896267328'
-//         }
-//     }
-//     next()
-// })
+
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -108,7 +92,7 @@ checkForLogin = (req,res,next) => {
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#'
+    successRedirect: process.env.Redirect
 }))
 
 app.get('/auth/me', (req,res) => {
@@ -123,7 +107,7 @@ app.get('/auth/me', (req,res) => {
 
 app.get('/logout', (req,res) => {
     req.logOut();
-    res.redirect('http://localhost:3000/');
+    res.redirect(process.env.Redirect);
 })
 
 app.get('/api/donuts', DonutsCtrl.getAllDonuts)
