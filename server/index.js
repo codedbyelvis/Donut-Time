@@ -61,9 +61,9 @@ passport.use(new Auth0Strategy({
         const db = app.get('db');
         console.log('Hello Darkness');
         const { sub, name, picture } = profile._json;
-        console.log(profile);
+        // console.log(profile);
         db.user.find_user([sub]).then(resp => {
-            console.log(resp);
+            // console.log(resp);
             if(resp[0]) {
                 done(null, resp[0].user_id)
             } else {
@@ -92,9 +92,9 @@ passport.deserializeUser( (id, done) => {
 })
 
 saveLocation = (req,res,next) => {
-    console.log('I tried')
+    // console.log('I tried')
     req.session.location = req.query.location
-    console.log('DUDE',req.query.location)
+    // console.log('DUDE',req.query.location)
     next()
 }
 
@@ -116,7 +116,7 @@ app.get('/auth/me', (req,res) => {
     if(!req.user) {
         res.status(404).send('Please log in')
     } else {
-        console.log('double dude', req.user)
+        // console.log('double dude', req.user)
         res.status(200).send(req.user);
     }
 })

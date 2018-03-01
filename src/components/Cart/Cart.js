@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Button from '../Button';
 import {connect} from 'react-redux';
-import {getUser} from '../../ducks/reducer';
+import {getUser, deleteCart} from '../../ducks/reducer';
 import StripeCheckout from 'react-stripe-checkout';
 import DonutTime from './donutStripe.jpg';
 const stripePublicKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
@@ -15,11 +15,11 @@ class Cart extends Component {
             cart: [],
             token: null
         }
-
+        
     this.stripeHandler = window.StripeCheckout.configure({
         key: stripePublicKey,
         token: this.onToken,
-        amount: 2000,
+        amount: this.displayTotal,
         currency: 'usd',
         locale: 'auto',
         zipCode: true,
@@ -36,11 +36,16 @@ class Cart extends Component {
         this.props.getUser();
         this.stripeHandler.close();
     }
+
+    deleteDonut(){
+
+    }
     
     onToken = token => {
         console.log('token', token);
         token.card = void 0;
-        const amount = 2000;
+        console.log(this.displayTotal)
+        const amount = this.displayTotal;
         axios.post('/api/payment', { token, amount })
           .then(charge => { console.log('charge response', charge) });
       }
@@ -51,7 +56,7 @@ class Cart extends Component {
       }
     
     render() {
-        let buttonText = this.state.token ? 'Thank you!' : 'Pay $20.00';
+        let buttonText = this.state.token ? 'Thank you!' : 'Checkout';
         const {cart} = this.state
         console.log(cart.length);
         const displayCart = cart.map((donut,i)=>{
@@ -63,13 +68,16 @@ class Cart extends Component {
                 {donut.donut_amount}
                 {/* <img src={donut.donut_img}/> */}
                 </div>
-            )
-        })
+            )})
+        this.displayTotal = cart.reduce((s, v) => s + (v.donut_amount * v.donut_price),0)
+                
         return (
             <div className='Cart'> 
-            <div className={this.state.token ? "stripeButton disabled" : "stripeButton"} 
-            onClick={this.state.token ? null : this.onClickPay.bind(this)}>
-            {buttonText} 
+            <div className={this.state.token ? "stripeButton disabled" : "stripeButton"}>
+            <div onClick={this.state.token ? null : this.onClickPay.bind(this)}>
+            <button>{buttonText}</button></div>
+             {displayCart}
+             ${this.displayTotal.toFixed(2)}
             {/* {displayCart}
                 <StripeCheckout
                 token={this.onToken}
@@ -85,4 +93,4 @@ function mapStateToProps( state ) {
     return state;
   }
   
-  export default connect( mapStateToProps, {getUser} )( Cart );
+  export default connect( mapStateToProps, {getUser, deleteCart} )( Cart );
