@@ -1,2 +1,2 @@
-delete * from cart
-where cart_id = $1;
+delete from cart
+where user_id = $1;

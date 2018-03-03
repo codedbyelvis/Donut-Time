@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'; 
 import {getUser} from '../../ducks/reducer';
-import background from './donutTime.jpg';
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -30,8 +29,7 @@ class Home extends Component {
         )):null
         console.log('dude', this.props.user);
         return (
-            <div className='App'>  
-                <img src={background} alt=""/>
+            <div className='Home'>  
             {
                     this.props.user.user_id?
 
@@ -45,7 +43,7 @@ class Home extends Component {
                 }
                 home goes here
                 {list}
-            </div> 
+            </div>
         )
     }
 }

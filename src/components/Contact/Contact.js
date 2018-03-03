@@ -8,7 +8,7 @@ export default class Contact extends Component {
         return (
             <div className='Contact'>  
                 <h1>Contact</h1>
-                <h3>Call</h3><p>(615)-965-2183</p>
+                <h3>Call</h3><p><a href="tel:5551234567">(615)-965-2183</a></p>
                 <h3><a class="btn btn-default" href="https://www.facebook.com/pg/ItsDonutTime/" target="_blank">Facebook</a></h3>
             </div> 
         )

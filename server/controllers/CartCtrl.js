@@ -7,7 +7,9 @@ module.exports = {
     },
     deleteCart: function(req,res){  
         const db = req.app.get('db')
-        db.cart.delete_cart([req.session.cart_id]).then(resp => {
+        console.log('delete',req.user)
+        db.cart.delete_cart([req.user.user_id]).then(resp => {
+            console.log('bunny',resp)
             res.status(200).send(resp);
         })
     },

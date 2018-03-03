@@ -37,8 +37,8 @@ export function addCart(itemToAdd, amount) {
 
 const DELETE_CART = 'DELETE_CART';
 
-export function deleteCart(itemToAdd, amount) {
-    const cart = axios.delete('/api/cart/'+itemToAdd.donut_id).then(res => {
+export function deleteCart(user_id) {
+    const cart = axios.delete('/api/cart/'+user_id).then(res => {
 
     return res.data;
     })

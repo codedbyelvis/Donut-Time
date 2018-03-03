@@ -7,12 +7,14 @@ import Home from './components/Home/Home';
 import Hours from './components/Hours/Hours';
 import Order from './components/Order/Order';
 import Cart from './components/Cart/Cart';
+import Navbar from './components/Navbar';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
       <HashRouter>
+      <div className="App">
+      <Navbar/>
         <Switch>
           <Route path='/' component={Home} exact/>
           <Route path='/Menu' component={Menu} />
@@ -21,8 +23,8 @@ class App extends Component {
           <Route path='/Hours' component={Hours} />
           <Route path='/Contact' component={Contact} />
         </Switch>
-      </HashRouter>
       </div>
+      </HashRouter>
     );
   }
 }

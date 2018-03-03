@@ -47,7 +47,14 @@ class Cart extends Component {
         console.log(this.displayTotal)
         const amount = this.displayTotal;
         axios.post('/api/payment', { token, amount })
-          .then(charge => { console.log('charge response', charge) });
+          .then(charge => { 
+              console.log('charge response', charge)
+              if(charge.status===200){
+                  this.props.deleteCart(this.props.user.user_id)
+              } else {
+                  alert("You're Broke")
+              }
+            });
       }
 
     onClickPay(e) {

@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
-const NavComponent = React.createClass({
-    render: function() {
+export default class Navbar extends Component {
+    render (){
       return (
         <nav>
-            <ul class='gridlist'>
-                <li><a href='/Menu'/><b>Menu</b></li>
-                <li><a href='/Hours'/><b>Hours</b></li>
-                <li><a href='/Contact'/><b>Contact</b></li>
-                <li><a href='/Cart'/><b>Cart</b></li>
-            </ul>
+            <Link to='/Menu' className='NavMenu'>Menu </Link>
+            <Link to='/Hours' className='NavHours'>Hours </Link>
+            <Link to='/Contact' className='NavContact'>Contact </Link>
+            <Link to='/Cart' className='NavCart'>Cart</Link>
         </nav>
       );
     }
-  });
-
-export default Button;
+  }
 
 {/* <nav>
             <div className="navWide">
