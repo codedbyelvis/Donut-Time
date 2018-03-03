@@ -50,7 +50,8 @@ class Cart extends Component {
           .then(charge => { 
               console.log('charge response', charge)
               if(charge.status===200){
-                  this.props.deleteCart(this.props.user.user_id)
+                  this.props.deleteCart(this.props.user.user_id);
+                this.setState({cart : []})
               } else {
                   alert("You're Broke")
               }
@@ -67,15 +68,19 @@ class Cart extends Component {
         const {cart} = this.state
         console.log(cart.length);
         const displayCart = cart.map((donut,i)=>{
-            console.log(donut)
-            return (
-                <div key={i}>
-                {donut.donut_name}
-                {donut.donut_price}
-                {donut.donut_amount}
-                {/* <img src={donut.donut_img}/> */}
-                </div>
-            )})
+        if(cart){
+        return (
+            <div key={i}>
+            {donut.donut_name}
+            {donut.donut_price}
+            {donut.donut_amount}
+            {/* <img src={donut.donut_img}/> */}
+            </div>
+        )}else{
+            console.log('asked',cart)
+            return '';
+        }
+    })
         this.displayTotal = cart.reduce((s, v) => s + (v.donut_amount * v.donut_price),0)
                 
         return (
@@ -94,6 +99,7 @@ class Cart extends Component {
             </div> 
         )
     }
+    
 }
 
 function mapStateToProps( state ) {
