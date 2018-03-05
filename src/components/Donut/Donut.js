@@ -70,3 +70,4 @@ function mapStateToProps( state ) {
   }
   
   export default connect( mapStateToProps, {addCart, getUser} )( Donut );
+//   comment
