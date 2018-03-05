@@ -1,4 +1,72 @@
-Hours{
+.Hours{
+background-color: red;
+height: 100vh;
+}
+.Container{
 display: grid;
+height: 100vh;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: repeat(8, 1fr);
+// grid-gap: 20px;
+font-weight: bold;
+background-color: rgba($color: #000000, $alpha: 0.1);
+grid-template-areas: 
+// ". ."
+"Title Title"
+"Mon MonT"
+"Tue TueT"
+"Wed WedT"
+"Thu ThuT"
+"Fri FriT"
+"Sat SatT"
+"Sun SunT"
+}
 
+.Title{
+grid-area: Title;
+font-weight: bolder;
+padding-top: 30px;
+}
+.Mon{
+grid-area: Mon;
+}
+.MonT{
+grid-area: MonT;
+}
+.Tue{
+grid-area: Tue;
+}
+.TueT{
+grid-area: TueT;
+}
+.Wed{
+grid-area: Wed;
+}
+.WedT{
+grid-area: WedT;
+}
+.Thu{
+grid-area: Thu;
+}
+.ThuT{
+grid-area: ThuT;
+}
+.Fri{
+grid-area: Fri;
+}
+.FriT{
+grid-area: FriT;
+}
+.Sat{
+grid-area: Sat;
+}
+.SatT{
+grid-area: SatT;
+}
+.Sun{
+grid-area: Sun;
+}
+.SunT{
+grid-area: SunT;
+padding-bottom: 20px;
 }

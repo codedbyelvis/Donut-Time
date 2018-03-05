@@ -30,7 +30,7 @@ export default class Menu extends Component {
         })
         return (
             <div className='Menu'>  
-            {donutsToDisplay}
+            <div className='dos'>{donutsToDisplay}</div>
             </div> 
         )
     }
