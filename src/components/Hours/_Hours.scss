@@ -5,10 +5,13 @@ background-attachment: fixed;
 background-size: cover;
 background-position: center;
 height: 100vh;
+width: 100%;
 }
 .HoursContainer{
 display: grid;
 height: 100vh;
+margin-left: 25%;
+margin-right: 25%;
 grid-template-columns: 1fr 1fr;
 grid-template-rows: repeat(8, 1fr);
 font-weight: bold;

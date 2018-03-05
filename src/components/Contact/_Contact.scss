@@ -7,7 +7,6 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 background-attachment: fixed;
 background-size: cover;
 background-position: center;
-font-weight: bold;
 text-decoration: none;
     
 }
@@ -21,6 +20,7 @@ margin-left: 25%;
 margin-right: 25%;
 // background-color: teal;
 text-decoration: none;
+font-weight: bold;
 grid-template-columns: 1fr 1fr;
 grid-template-rows: repeat(4, 1fr);
 grid-template-areas: 
@@ -71,6 +71,13 @@ text-decoration: none;
 }
 
 .Facebook:hover{
+    color: blue;
+    transform: scale(1.5);
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+}
+
+.Handle:hover{
     color: blue;
     transform: scale(1.5);
     font-family: 'Arial Narrow', Arial, sans-serif;
