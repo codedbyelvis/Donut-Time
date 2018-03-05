@@ -37,19 +37,15 @@ class Donut extends Component {
         const {donut} = this.state;
         return (
             <div className='Donut'>  
-            <div>
-                    <img src={donut.donut_img} alt='' />
-                    <h2>{donut.donut_name}</h2>
-                    {donut.donut_price}
-                    <p>{donut.donut_desc}</p>
-                    {this.state.amount}
-                </div>
-       
-             <Button className='single' fnc={() => this.setState({amount: this.state.amount +1})}>Single</Button>
-             <Button className='half-dozen' fnc={() => this.setState({amount: this.state.amount +6})}>Half-Dozen</Button>
-             <Button className='dozen' fnc={() => this.setState({amount: this.state.amount +12})}>Dozen</Button>
-             
-            {
+            {/* <div className='DonutContainer'> */}
+            <div className='Everything'>
+                    <img className='DonutImg' src={donut.donut_img} alt='' />
+                    <h2 className='DonutName'>{donut.donut_name}</h2>
+                     <p className='DonutPrice'>{donut.donut_price}</p>
+                    <p className='DonutDesc'>{donut.donut_desc}</p>
+                    <p className='DonutAmount'>{this.state.amount}</p>
+                
+                    {
                 this.state.toggle
                 ?
                 <a href={`${process.env.BaseURL}/auth?location=${this.props.location.pathname}`}><Button className='logIn'>Login</Button></a>
@@ -58,7 +54,12 @@ class Donut extends Component {
             }
             
             <Button className='ADD' fnc={() => {this.checkLogin()}}>ADD</Button>
-
+             <Button className='single' fnc={() => this.setState({amount: this.state.amount +1})}>Single</Button>
+             <Button className='half-dozen' fnc={() => this.setState({amount: this.state.amount +6})}>Half-Dozen</Button>
+             <Button className='dozen' fnc={() => this.setState({amount: this.state.amount +12})}>Dozen</Button>
+             
+            </div>
+            {/* </div> */}
             </div> 
         )
     }

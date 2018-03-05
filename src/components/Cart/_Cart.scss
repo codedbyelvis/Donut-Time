@@ -5,4 +5,90 @@
     background-size: cover;
     background-position: center;
     height: 100vh;
+    width: 100%;
+    font-weight: bold;
+}
+
+.CartContainer {
+height: 90vh;
+width: 100%;
+display: grid;
+// grid-template-columns: repeat(3, 1fr);
+// grid-template-rows: repeat(3, 1fr);
+grid-template-areas: 
+"Checkout Checkout Checkout Checkout"
+". CartHeader2 CartHeader3 CartHeader4"
+"DisplayCart DisplayCart DisplayCart DisplayCart"
+"CartTotal CartTotal PayButton PayButton"
+// margin-left: 25%;
+// margin-right: 25%;
+}
+
+.Items{
+display: grid;
+grid-template-areas: 
+"CartName  CartPrice CartAmount CartImg"
+}
+
+.CartImg{
+grid-area: CartImg;
+height: 100px;
+width: 100px;
+justify-self: center;
+align-self: center;
+// padding-right: 10px;
+}
+
+.CartName{
+    width: 150px;
+grid-area: CartName;
+justify-self: center;
+align-self: center;
+}
+
+.CartPrice{
+grid-area: CartPrice;
+justify-self: center;
+align-self: center;
+}
+
+.CartAmount{
+grid-area: CartAmount;
+justify-self: center;
+align-self: center;
+}
+
+.Checkout{
+grid-area: Checkout;
+font-weight: bolder;
+padding-top: 30px;
+}
+
+.DisplayCart{
+grid-area: DisplayCart;
+}
+
+.PayButton{
+grid-area: PayButton;
+justify-self: center;
+align-self: start;
+}
+
+.CartTotal{
+grid-area: CartTotal;
+justify-self: end;
+align-self: start;
+}
+
+.CartTotal:hover{
+    color:rgb(255, 145, 0);
+    transform: scale(1.2);
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    border-radius: 100%;
+    font-weight: bold;
+    background-color: #b19494;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%23ff0303' stroke-width='66.7' stroke-opacity='0.08' %3E%3Ccircle fill='%23ff0505' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%23f2000d' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%23e40012' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%23d60015' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%23c90017' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%23bb0018' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%23ae0019' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%23a00019' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%23930019' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%23850019' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%23780118' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%236b0316' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%235e0515' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%23510612' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%2345070f' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%2339070b' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%232d0606' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%23240000' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
+background-attachment: fixed;
+background-size: cover;
+background-position: center;    
 }

@@ -30,7 +30,8 @@ class Home extends Component {
         console.log('dude', this.props.user);
         return (
             <div className='Home'>  
-            {
+            <div className='HomeContainer'>
+            <h1 className='Welcome'>Welcome to Donut Time</h1>            {
                     this.props.user.user_id?
 
                 <a href={ process.env.REACT_APP_LOGIN+'/logout' }>
@@ -41,8 +42,8 @@ class Home extends Component {
                     <button>Login</button>
                 </a>
                 }
-                home goes here
-                {list}
+                <p className='Reviews'>{list}</p>
+            </div>
             </div>
         )
     }

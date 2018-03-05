@@ -70,11 +70,11 @@ class Cart extends Component {
         const displayCart = cart.map((donut,i)=>{
         if(cart){
         return (
-            <div key={i}>
-            {donut.donut_name}
-            {donut.donut_price}
-            {donut.donut_amount}
-            {/* <img src={donut.donut_img}/> */}
+            <div className='Items' key={i}>
+            <img className='CartImg' src={donut.donut_img}/>
+            <p className='CartName'>{donut.donut_name}</p>
+            <p className='CartPrice'>{donut.donut_price}</p>
+            <p className='CartAmount'>{donut.donut_amount}</p>
             </div>
         )}else{
             console.log('asked',cart)
@@ -85,17 +85,19 @@ class Cart extends Component {
                 
         return (
             <div className='Cart'> 
-            <div className={this.state.token ? "stripeButton disabled" : "stripeButton"}>
-            <div onClick={this.state.token ? null : this.onClickPay.bind(this)}>
+            <div className='CartContainer'>  
+            <h1 className='Checkout'>Checkout</h1>
+            <p className='CartHeader1'>Donut</p>
+            <p className='CartHeader2'>Price</p>
+            <p className='CartHeader3'>Amount</p>
+            <div className='PayButton' onClick={this.state.token ? null : this.onClickPay.bind(this)}>
             <button>{buttonText}</button></div>
-             {displayCart}
-             ${this.displayTotal.toFixed(2)}
-            {/* {displayCart}
-                <StripeCheckout
-                token={this.onToken}
-                stripeKey={stripePublicKey}
-                amount={this.state.amount} /> */}
+             <p className='DisplayCart'>{displayCart}</p>
+             <p className='CartTotal'>Total:{this.displayTotal.toFixed(2)}</p>
+            <div className={this.state.token ? "stripeButton disabled" : "stripeButton"}>
+        
             </div>
+            </div> 
             </div> 
         )
     }

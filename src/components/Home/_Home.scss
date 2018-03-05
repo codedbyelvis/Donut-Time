@@ -1,8 +1,86 @@
 .Home{
-    background-image: url('./components/Home/donutTime.jpg');
-    background-repeat: no-repeat;
-    background-size: 100% 100vh;
-    background-position: center 0;
-    height: 100vh;
-    width: 100%;
+background-image: url('./components/Home/donutTime.jpg');
+background-repeat: no-repeat;
+background-size: 100% 100vh;
+background-position: center 0;
+height: 100%;
+width: 100%;
+font-weight: bold;
+    
+    
+}
+
+.HomeContainer{
+height: 100vh;
+width: 100%;
+display: grid;
+grid-template-rows: repeat(3, 1fr);
+}
+
+.Welcome{
+// grid-area: MenuTitle;
+font-weight: bolder;
+justify-self: center;
+align-self: center;
+padding-top: 30px;
+font-size: 50px;
+grid-column: 1 / span -1;
+}
+
+.Reviews{
+display: grid;
+grid-template-rows: repeat(6, 1fr);
+justify-content: center;
+align-content: center;
+margin-left: 25%;
+margin-right: 25%;
+padding-top: 15px;
+padding-bottom: 15px;
+background-color: rgba($color: lightgray, $alpha: 0.5);
+border: black solid 2px;
+}
+
+.Welcome:hover{
+    color:rgb(255, 145, 0);
+    transform: scale(1.5);
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    border-radius: 100%;
+    font-weight: bold;
+    background-color: #ff0505;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%23ff0303' stroke-width='66.7' stroke-opacity='0.08' %3E%3Ccircle fill='%23ff0505' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%23f2000d' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%23e40012' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%23d60015' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%23c90017' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%23bb0018' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%23ae0019' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%23a00019' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%23930019' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%23850019' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%23780118' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%236b0316' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%235e0515' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%23510612' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%2345070f' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%2339070b' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%232d0606' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%23240000' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
+background-attachment: fixed;
+background-size: cover;
+background-position: center;    
+}
+
+a{
+grid-column: 2 / span -2;
+justify-self: center;
+align-self: center;
+    
+}
+
+button{
+color: black;
+background-color: #d90000;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 800'%3E%3Cg %3E%3Ccircle fill='%23d90000' cx='400' cy='400' r='600'/%3E%3Ccircle fill='%23be0005' cx='400' cy='400' r='500'/%3E%3Ccircle fill='%23a30008' cx='400' cy='400' r='400'/%3E%3Ccircle fill='%23890008' cx='400' cy='400' r='300'/%3E%3Ccircle fill='%23700005' cx='400' cy='400' r='200'/%3E%3Ccircle fill='%23570000' cx='400' cy='400' r='100'/%3E%3C/g%3E%3C/svg%3E");
+background-attachment: fixed;
+background-size: cover;
+background-position: center;
+box-shadow: 0 0 5 black;
+justify-self: center;
+align-self: center;
+height: 50px;
+width: 100px;
+border-radius: 10%;
+font-weight: bold;
+
+}
+
+button:hover{
+    transform: scale(1.2);
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+    // border-radius: 10%;
+    box-shadow:  inset 0 0 100px 5px rgb(214, 105, 86);
 }
