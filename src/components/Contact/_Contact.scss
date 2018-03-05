@@ -1,4 +1,78 @@
 .Contact {
-    display: grid;
+height: 100vh;
+width: 100%;
+// color: white;
+background-color: #cc5577;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 100 60'%3E%3Cg %3E%3Crect fill='%23cc5577' width='11' height='11'/%3E%3Crect fill='%23cd5877' x='10' width='11' height='11'/%3E%3Crect fill='%23ce5a77' y='10' width='11' height='11'/%3E%3Crect fill='%23d05d77' x='20' width='11' height='11'/%3E%3Crect fill='%23d16077' x='10' y='10' width='11' height='11'/%3E%3Crect fill='%23d26377' y='20' width='11' height='11'/%3E%3Crect fill='%23d36577' x='30' width='11' height='11'/%3E%3Crect fill='%23d46877' x='20' y='10' width='11' height='11'/%3E%3Crect fill='%23d46b78' x='10' y='20' width='11' height='11'/%3E%3Crect fill='%23d56d78' y='30' width='11' height='11'/%3E%3Crect fill='%23d67078' x='40' width='11' height='11'/%3E%3Crect fill='%23d77379' x='30' y='10' width='11' height='11'/%3E%3Crect fill='%23d87679' x='20' y='20' width='11' height='11'/%3E%3Crect fill='%23d8787a' x='10' y='30' width='11' height='11'/%3E%3Crect fill='%23d97b7b' y='40' width='11' height='11'/%3E%3Crect fill='%23da7e7b' x='50' width='11' height='11'/%3E%3Crect fill='%23da807c' x='40' y='10' width='11' height='11'/%3E%3Crect fill='%23db837d' x='30' y='20' width='11' height='11'/%3E%3Crect fill='%23db857e' x='20' y='30' width='11' height='11'/%3E%3Crect fill='%23dc887f' x='10' y='40' width='11' height='11'/%3E%3Crect fill='%23dc8b80' y='50' width='11' height='11'/%3E%3Crect fill='%23dd8d81' x='60' width='11' height='11'/%3E%3Crect fill='%23dd9083' x='50' y='10' width='11' height='11'/%3E%3Crect fill='%23de9284' x='40' y='20' width='11' height='11'/%3E%3Crect fill='%23de9585' x='30' y='30' width='11' height='11'/%3E%3Crect fill='%23df9887' x='20' y='40' width='11' height='11'/%3E%3Crect fill='%23df9a88' x='10' y='50' width='11' height='11'/%3E%3Crect fill='%23df9d8a' x='70' width='11' height='11'/%3E%3Crect fill='%23e09f8c' x='60' y='10' width='11' height='11'/%3E%3Crect fill='%23e0a28d' x='50' y='20' width='11' height='11'/%3E%3Crect fill='%23e1a48f' x='40' y='30' width='11' height='11'/%3E%3Crect fill='%23e1a791' x='30' y='40' width='11' height='11'/%3E%3Crect fill='%23e1a993' x='20' y='50' width='11' height='11'/%3E%3Crect fill='%23e2ac95' x='80' width='11' height='11'/%3E%3Crect fill='%23e2ae97' x='70' y='10' width='11' height='11'/%3E%3Crect fill='%23e2b199' x='60' y='20' width='11' height='11'/%3E%3Crect fill='%23e2b39b' x='50' y='30' width='11' height='11'/%3E%3Crect fill='%23e3b59e' x='40' y='40' width='11' height='11'/%3E%3Crect fill='%23e3b8a0' x='30' y='50' width='11' height='11'/%3E%3Crect fill='%23e3baa3' x='90' width='11' height='11'/%3E%3Crect fill='%23e4bda5' x='80' y='10' width='11' height='11'/%3E%3Crect fill='%23e4bfa8' x='70' y='20' width='11' height='11'/%3E%3Crect fill='%23e4c1aa' x='60' y='30' width='11' height='11'/%3E%3Crect fill='%23e5c4ad' x='50' y='40' width='11' height='11'/%3E%3Crect fill='%23e5c6af' x='40' y='50' width='11' height='11'/%3E%3Crect fill='%23e6c8b2' x='90' y='10' width='11' height='11'/%3E%3Crect fill='%23e6cbb5' x='80' y='20' width='11' height='11'/%3E%3Crect fill='%23e6cdb8' x='70' y='30' width='11' height='11'/%3E%3Crect fill='%23e7cfbb' x='60' y='40' width='11' height='11'/%3E%3Crect fill='%23e7d1be' x='50' y='50' width='11' height='11'/%3E%3Crect fill='%23e8d4c1' x='90' y='20' width='11' height='11'/%3E%3Crect fill='%23e8d6c4' x='80' y='30' width='11' height='11'/%3E%3Crect fill='%23e9d8c7' x='70' y='40' width='11' height='11'/%3E%3Crect fill='%23eadaca' x='60' y='50' width='11' height='11'/%3E%3Crect fill='%23eadccd' x='90' y='30' width='11' height='11'/%3E%3Crect fill='%23ebdfd0' x='80' y='40' width='11' height='11'/%3E%3Crect fill='%23ece1d3' x='70' y='50' width='11' height='11'/%3E%3Crect fill='%23ece3d6' x='90' y='40' width='11' height='11'/%3E%3Crect fill='%23ede5da' x='80' y='50' width='11' height='11'/%3E%3Crect fill='%23eee7dd' x='90' y='50' width='11' height='11'/%3E%3C/g%3E%3C/svg%3E");
+background-attachment: fixed;
+background-size: cover;
+background-position: center;
+font-weight: bold;
+text-decoration: none;
     
+}
+
+.ContactContainer {
+height: 75vh;
+// width: 100%;
+display: grid;
+color: rgb(46, 40, 40);
+margin-left: 25%;
+margin-right: 25%;
+// background-color: teal;
+text-decoration: none;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: repeat(4, 1fr);
+grid-template-areas: 
+"ContactTitle ContactTitle"
+"Call Phone"
+"Facebooks Facebook"
+"Twitter Handle"
+}
+
+.ContactTitle{
+grid-area: ContactTitle;
+font-weight: bolder;
+padding-top: 30px;
+}
+.Call{
+grid-area: Call;
+}
+
+.Phone{
+grid-area: Phone;
+text-decoration: none;
+}
+
+.Facebooks{
+grid-area: Facebooks;
+}
+
+.Facebook{
+grid-area: Facebook;
+text-decoration: none;
+}
+
+.Twitter{
+grid-area: Twitter;
+}
+
+.Handle{
+grid-area: Handle;
+padding-bottom: 50px;
+text-decoration: none;
+}
+
+.Phone:hover{
+    color: blue;
+    transform: scale(1.5);
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+}
+
+.Facebook:hover{
+    color: blue;
+    transform: scale(1.5);
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
 }

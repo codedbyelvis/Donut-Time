@@ -49,10 +49,6 @@ class Donut extends Component {
              <Button className='half-dozen' fnc={() => this.setState({amount: this.state.amount +6})}>Half-Dozen</Button>
              <Button className='dozen' fnc={() => this.setState({amount: this.state.amount +12})}>Dozen</Button>
              
-            {/* <Button className='ADD' fnc={() => {this.props.addCart(this.state.donut,this.state.amount);
-            () => {this.state.toggle ? (<a href="http://localhost:3030/auth"><button>Login</button></a>) : null}} }>
-                ADD
-            </Button> */}
             {
                 this.state.toggle
                 ?

@@ -22,15 +22,18 @@ export default class Menu extends Component {
     render() {
         let donutsToDisplay = this.state.donuts.map(val => {
             return(
+                <div className="Menu">
                 <Link to={`/Donut/${val.donut_id}`}><div>
-                    <img src={val.donut_img} />
-                    <h2>{val.donut_name}</h2>
+                    <img className='MenuImg' src={val.donut_img} />
+                    <h2 className='MenuName'>{val.donut_name}</h2>
                 </div></Link>
+                </div>
             )
         })
         return (
-            <div className='Menu'>  
-            <div className='dos'>{donutsToDisplay}</div>
+            <div>
+            <h1 classname='MenuTitle'>Menu</h1>
+            {donutsToDisplay}
             </div> 
         )
     }

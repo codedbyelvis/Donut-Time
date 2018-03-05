@@ -7,7 +7,7 @@ export default class Hours extends Component {
     render() {
         return (
             <div className='Hours'> 
-            <div className='Container'> 
+            <div className='HoursContainer'> 
                 <h1 className='Title'>Hours</h1> 
                 <h3 className='Mon'>Monday</h3><p className='MonT'>5:00 AM - 2:00 PM</p>
                 <h3 className='Tue'>Tuesday</h3><p className='TueT'>5:00 AM - 2:00 PM</p>
